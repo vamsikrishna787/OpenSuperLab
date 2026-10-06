@@ -6,9 +6,9 @@ Website for **OpenSuperLab**, an open source research collective. Built with Rea
 
 ```bash
 npm install
-npm run dev        # http://localhost:5173
+npm run dev        # http://localhost:5180
 npm run build      # outputs to dist/
-npm run preview    # serve the production build locally (dist/index.html can also be opened directly)
+npm run preview    # serve the production build locally
 ```
 
 ## Editing content
@@ -21,7 +21,7 @@ No CMS needed — content lives in plain JS files:
 | Research (papers, datasets, software, blog posts) | [src/data/research.js](src/data/research.js) |
 | Logo / icon | [public/favicon.svg](public/favicon.svg) and [src/components/Logo.jsx](src/components/Logo.jsx) |
 
-Each lab gets its own page at `#/labs/<slug>`, listing the research items whose `lab` field matches.
+Each lab gets its own page at `/labs/<slug>`, listing the research items whose `lab` field matches.
 
 ## Deploy to AWS S3
 
@@ -33,7 +33,7 @@ Requires the [AWS CLI](https://aws.amazon.com/cli/) configured with credentials 
 S3_BUCKET=opensuperlab-site AWS_REGION=us-east-1 bash scripts/setup-s3.sh
 ```
 
-This creates the bucket, enables static website hosting and adds a public-read bucket policy. The site uses hash URLs (e.g. `/#/labs/agents`), so no server-side rewrite rules are needed.
+This creates the bucket, enables static website hosting and adds a public-read bucket policy. The site uses clean URLs (e.g. `/labs/agents`), so the host must serve `index.html` for unknown paths: the setup script sets it as the S3 error document, and the CloudFront distribution maps 403/404 to `/index.html` with status 200.
 
 **2. Build and deploy** (every time you change the site):
 

@@ -1,27 +1,11 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// Browsers block `<script type="module">` and `crossorigin` assets on file:// URLs,
-// so emit a classic deferred script. The built site then works when dist/index.html
-// is opened directly, as well as on S3 or any static host.
-const classicScript = () => ({
-  name: 'classic-script',
-  apply: 'build',
-  transformIndexHtml: {
-    order: 'post',
-    handler: (html) =>
-      html
-        .replace(/<script type="module" crossorigin/g, '<script defer')
-        .replace(/ crossorigin(?=[ >])/g, ''),
-  },
-});
-
 export default defineConfig({
-  // Relative asset paths so the build works from S3, any sub-path, or opened directly from disk.
-  base: './',
-  plugins: [react(), classicScript()],
-  build: {
-    modulePreload: false,
-    rollupOptions: { output: { format: 'iife' } },
-  },
+  // Absolute asset paths so deep links like /labs/agents still load /assets/*.
+  // The host must serve index.html for unknown paths (CloudFront error responses do this).
+  base: '/',
+  plugins: [react()],
+  // Own port so it doesn't collide with other local Vite apps on 5173; fail instead of silently hopping.
+  server: { port: 5180, strictPort: true },
 });
