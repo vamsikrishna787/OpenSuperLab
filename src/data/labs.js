@@ -1,8 +1,10 @@
 // Edit this file to add or update labs. `slug` is used in the URL (/labs/:slug).
 // `overview` is optional: a list of highlights shown on the lab's page.
+// `demo` is optional: a live demo URL, opened in a new tab.
+// Keep slugs clear of /labs/browserautomationlab*: CloudFront serves the live demo app there.
 export const labs = [
   {
-    slug: 'browserautomationlab',
+    slug: 'browser-automation-testing',
     name: 'Browser Automation Testing Lab',
     status: 'Active',
     tagline: 'Plain-English end-to-end tests, written by agents and run with Playwright.',
@@ -10,6 +12,9 @@ export const labs = [
       'We build an open Playwright test platform: describe a test as data and steps in plain English, let an agent write the spec, then run it headless and watch it advance step by step — with an accessibility scan and a Lighthouse audit on every run.',
     focus: ['Playwright', 'AI test generation', 'Accessibility', 'Performance'],
     repo: 'https://github.com/vamsikrishna787/playwright',
+    demo: 'https://opensuperlab.com/labs/browserautomationlab/',
+    demoNote:
+      'The platform is running live. Sign in with your email to get your own workspace — each person only sees the suites and tests they create. Create a suite for a site, add test data and plain-English steps, generate the Playwright spec, then run it and watch each step pass or fail.',
     color: '#2d7ff9',
     gradient: ['#d3e5ff', '#7fb2ff', '#1f57c3'],
     overview: [

@@ -61,7 +61,7 @@ export default function Research() {
             {items.map((item) => <ResearchRow key={item.id} item={item} />)}
           </div>
         ) : (
-          <p className="muted">No results match these filters.</p>
+          <p className="muted">{research.length ? 'No results match these filters.' : 'Nothing published yet. Work in progress is on GitHub.'}</p>
         )}
       </div>
     </section>

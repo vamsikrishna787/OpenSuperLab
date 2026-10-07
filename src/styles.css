@@ -117,11 +117,11 @@ p { margin: 0 0 1em; }
 @media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
 .tile { display: block; }
 .tile .thumb { transition: transform .4s ease; }
-.tile:hover .thumb { transform: scale(1.015); }
+a.tile:hover .thumb, .tile-link:hover .thumb { transform: scale(1.015); }
 .tile-body { padding-top: 1rem; }
 .tile-body h3 { margin-bottom: .35rem; }
 .tile-body p.muted { margin-bottom: .35rem; font-size: .95rem; }
-.tile:hover h3 { text-decoration: underline; text-underline-offset: 3px; }
+a.tile:hover h3, .tile-link:hover h3 { text-decoration: underline; text-underline-offset: 3px; }
 
 /* Principles */
 .principles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 2.5rem; }
@@ -180,3 +180,31 @@ p { margin: 0 0 1em; }
 }
 .footer-bottom .brand { font-weight: 500; font-size: .85rem; color: var(--muted); }
 @media (max-width: 600px) { .footer-grid { grid-template-columns: repeat(2, 1fr); } }
+
+/* GitHub repo stats */
+.repo-stats { display: inline-flex; gap: 1rem; margin-top: .5rem; color: var(--muted); font-size: .875rem; }
+.repo-stats > * { display: inline-flex; align-items: center; gap: .3rem; }
+.text-link { text-decoration: underline; text-underline-offset: 3px; }
+#licensing { scroll-margin-top: 80px; }
+.repo-actions { display: inline-flex; gap: .6rem; flex-wrap: wrap; }
+.gh-btn {
+  display: inline-flex; align-items: center; gap: .4rem; padding: .7rem 1.1rem; border-radius: 999px;
+  border: 1px solid var(--border); font-weight: 500; font-size: .95rem; transition: background .15s;
+}
+.gh-btn:hover { background: var(--bg-soft); }
+.gh-count { padding-left: .5rem; margin-left: .1rem; border-left: 1px solid var(--border); color: var(--muted); }
+
+/* Live demo */
+.btn-outline { background: transparent; color: var(--text); border-color: var(--border); }
+.btn-outline:hover { opacity: 1; background: var(--bg-soft); }
+.tile-link { display: block; }
+.demo-link { display: inline-block; margin-top: .6rem; font-size: .9rem; font-weight: 500; }
+.demo-link:hover { text-decoration: underline; text-underline-offset: 3px; }
+.demo-callout {
+  display: flex; justify-content: space-between; align-items: center; gap: 2rem;
+  margin-top: 3rem; padding: 2rem; border-radius: var(--radius); background: var(--bg-soft);
+}
+.demo-callout h2 { margin-bottom: .4rem; }
+.demo-callout p { margin: 0; max-width: 640px; }
+.demo-callout .btn { flex-shrink: 0; }
+@media (max-width: 700px) { .demo-callout { flex-direction: column; align-items: flex-start; } }

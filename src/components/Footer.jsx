@@ -21,7 +21,7 @@ export default function Footer() {
         </div>
         <div className="footer-col">
           <h4>Community</h4>
-          <a href="https://github.com/opensuperlab" target="_blank" rel="noreferrer">GitHub</a>
+          <a href="https://github.com/vamsikrishna787/OpenSuperLab" target="_blank" rel="noreferrer">GitHub</a>
           <Link to="/about">Get involved</Link>
           <Link to="/about">Propose a lab</Link>
         </div>
@@ -29,7 +29,7 @@ export default function Footer() {
           <h4>Company</h4>
           <Link to="/about">About</Link>
           <Link to="/about">Mission</Link>
-          <Link to="/about">Licensing</Link>
+          <Link to="/about#licensing">Licensing</Link>
         </div>
       </div>
       <div className="container footer-bottom">

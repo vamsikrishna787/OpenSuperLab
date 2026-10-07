@@ -3,6 +3,7 @@ import { getLab } from '../data/labs.js';
 import { research } from '../data/research.js';
 import ResearchItem from '../components/ResearchItem.jsx';
 import Thumb from '../components/Thumb.jsx';
+import RepoStats from '../components/RepoStats.jsx';
 import NotFound from './NotFound.jsx';
 
 export default function LabDetail() {
@@ -21,10 +22,26 @@ export default function LabDetail() {
           <p className="lead">{lab.description}</p>
           <p className="meta">{lab.status} · {lab.focus.join(', ')}</p>
           <div className="hero-cta">
-            <a className="btn" href={lab.repo} target="_blank" rel="noreferrer">View repository</a>
+            {lab.demo && (
+              <a className="btn" href={lab.demo} target="_blank" rel="noopener noreferrer">Open live demo ↗</a>
+            )}
+            <a className={lab.demo ? 'btn btn-outline' : 'btn'} href={lab.repo} target="_blank" rel="noreferrer">
+              View repository
+            </a>
+            <RepoStats repo={lab.repo} actions />
           </div>
         </div>
         <Thumb gradient={lab.gradient} seed={lab.slug + 'banner'} className="banner" />
+
+        {lab.demo && (
+          <div className="demo-callout">
+            <div>
+              <h2>Try the live demo</h2>
+              {lab.demoNote && <p className="muted">{lab.demoNote}</p>}
+            </div>
+            <a className="btn" href={lab.demo} target="_blank" rel="noopener noreferrer">Open live demo ↗</a>
+          </div>
+        )}
 
         {lab.overview && (
           <>

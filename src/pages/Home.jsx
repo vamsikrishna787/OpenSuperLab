@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { labs, getLab } from '../data/labs.js';
 import { research } from '../data/research.js';
 import LabCard from '../components/LabCard.jsx';
-import ResearchItem, { formatDate } from '../components/ResearchItem.jsx';
+import ResearchItem, { formatDate, FALLBACK } from '../components/ResearchItem.jsx';
 import Thumb from '../components/Thumb.jsx';
 
 const principles = [
@@ -14,7 +14,7 @@ const principles = [
 export default function Home() {
   const sorted = [...research].sort((a, b) => b.date.localeCompare(a.date));
   const [featured, ...rest] = sorted;
-  const featuredLab = getLab(featured.lab);
+  const featuredLab = featured && getLab(featured.lab);
 
   return (
     <>
@@ -32,17 +32,19 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="container">
-        <a href={featured.link} className="feature">
-          <Thumb gradient={featuredLab.gradient} seed={featured.id} className="feature-art" />
-          <div className="feature-body">
-            <p className="meta">{featured.type} · {formatDate(featured.date)}</p>
-            <h2>{featured.title}</h2>
-            <p className="muted">{featured.abstract}</p>
-            <span className="btn btn-small">Read more</span>
-          </div>
-        </a>
-      </section>
+      {featured && (
+        <section className="container">
+          <a href={featured.link} className="feature">
+            <Thumb gradient={featuredLab?.gradient ?? FALLBACK} seed={featured.id} className="feature-art" />
+            <div className="feature-body">
+              <p className="meta">{featured.type} · {formatDate(featured.date)}</p>
+              <h2>{featured.title}</h2>
+              <p className="muted">{featured.abstract}</p>
+              <span className="btn btn-small">Read more</span>
+            </div>
+          </a>
+        </section>
+      )}
 
       {rest.length > 0 && (
         <section className="section">
@@ -89,7 +91,7 @@ export default function Home() {
           <h2>Join the open research community</h2>
           <p className="lead">Pick an issue, join a lab, or propose your own.</p>
           <div className="hero-cta">
-            <a className="btn" href="https://github.com/opensuperlab" target="_blank" rel="noreferrer">
+            <a className="btn" href="https://github.com/vamsikrishna787/OpenSuperLab" target="_blank" rel="noreferrer">
               Get involved on GitHub
             </a>
           </div>

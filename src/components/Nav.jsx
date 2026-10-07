@@ -25,7 +25,7 @@ export default function Nav() {
               {l.label}
             </NavLink>
           ))}
-          <a className="btn btn-small nav-cta" href="https://github.com/opensuperlab" target="_blank" rel="noreferrer">
+          <a className="btn btn-small nav-cta" href="https://github.com/vamsikrishna787/OpenSuperLab" target="_blank" rel="noreferrer">
             Get involved
           </a>
         </nav>

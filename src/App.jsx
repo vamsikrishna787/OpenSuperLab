@@ -10,11 +10,13 @@ import About from './pages/About.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
   // Block body: scrollTo may return a Promise, which React would treat as a cleanup function.
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    const target = hash && document.getElementById(hash.slice(1));
+    if (target) target.scrollIntoView();
+    else window.scrollTo(0, 0);
+  }, [pathname, hash]);
   return null;
 }
 

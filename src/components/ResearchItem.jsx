@@ -1,7 +1,7 @@
 import { getLab } from '../data/labs.js';
 import Thumb from './Thumb.jsx';
 
-const FALLBACK = ['#eeeeee', '#bbbbbb', '#777777'];
+export const FALLBACK = ['#eeeeee', '#bbbbbb', '#777777'];
 
 export const formatDate = (d) =>
   new Date(`${d}T00:00:00`).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
