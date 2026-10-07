@@ -44,17 +44,19 @@ export default function Home() {
         </a>
       </section>
 
-      <section className="section">
-        <div className="container">
-          <div className="section-head">
-            <h2>Latest research</h2>
-            <Link to="/research" className="link-more">View all ›</Link>
+      {rest.length > 0 && (
+        <section className="section">
+          <div className="container">
+            <div className="section-head">
+              <h2>Latest research</h2>
+              <Link to="/research" className="link-more">View all ›</Link>
+            </div>
+            <div className="grid">
+              {rest.slice(0, 3).map((item) => <ResearchItem key={item.id} item={item} />)}
+            </div>
           </div>
-          <div className="grid">
-            {rest.slice(0, 3).map((item) => <ResearchItem key={item.id} item={item} />)}
-          </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <section className="section">
         <div className="container">

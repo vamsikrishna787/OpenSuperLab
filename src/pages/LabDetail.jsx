@@ -26,6 +26,22 @@ export default function LabDetail() {
         </div>
         <Thumb gradient={lab.gradient} seed={lab.slug + 'banner'} className="banner" />
 
+        {lab.overview && (
+          <>
+            <div className="section-head">
+              <h2>Overview</h2>
+            </div>
+            <div className="principles">
+              {lab.overview.map((o) => (
+                <div key={o.title}>
+                  <h3>{o.title}</h3>
+                  <p className="muted">{o.body}</p>
+                </div>
+              ))}
+            </div>
+          </>
+        )}
+
         <div className="section-head">
           <h2>Research from this lab</h2>
         </div>

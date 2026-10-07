@@ -6,7 +6,7 @@ Website for **OpenSuperLab**, an open source research collective. Built with Rea
 
 ```bash
 npm install
-npm run dev        # http://localhost:5180
+npm run dev        # http://localhost:5190
 npm run build      # outputs to dist/
 npm run preview    # serve the production build locally
 ```
