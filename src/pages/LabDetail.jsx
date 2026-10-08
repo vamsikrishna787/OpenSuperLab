@@ -4,7 +4,10 @@ import { research } from '../data/research.js';
 import ResearchItem from '../components/ResearchItem.jsx';
 import Thumb from '../components/Thumb.jsx';
 import RepoStats from '../components/RepoStats.jsx';
+import CopyCommand from '../components/CopyCommand.jsx';
 import NotFound from './NotFound.jsx';
+
+const CONTACT = 'https://vamsicloud.com';
 
 export default function LabDetail() {
   const { slug } = useParams();
@@ -25,10 +28,20 @@ export default function LabDetail() {
             {lab.demo && (
               <a className="btn" href={lab.demo} target="_blank" rel="noopener noreferrer">Open live demo ↗</a>
             )}
-            <a className={lab.demo ? 'btn btn-outline' : 'btn'} href={lab.repo} target="_blank" rel="noreferrer">
-              View repository
-            </a>
-            <RepoStats repo={lab.repo} actions />
+            {lab.npm && (
+              <a className={lab.demo ? 'btn btn-outline' : 'btn'} href={lab.npm} target="_blank" rel="noopener noreferrer">View on npm ↗</a>
+            )}
+            {lab.comingSoon && (
+              <a className="btn" href={CONTACT} target="_blank" rel="noopener noreferrer">Get involved early ↗</a>
+            )}
+            {lab.repo && (
+              <>
+                <a className={lab.demo || lab.npm ? 'btn btn-outline' : 'btn'} href={lab.repo} target="_blank" rel="noreferrer">
+                  View repository
+                </a>
+                <RepoStats repo={lab.repo} actions />
+              </>
+            )}
           </div>
         </div>
         <Thumb gradient={lab.gradient} seed={lab.slug + 'banner'} className="banner" />
@@ -40,6 +53,26 @@ export default function LabDetail() {
               {lab.demoNote && <p className="muted">{lab.demoNote}</p>}
             </div>
             <a className="btn" href={lab.demo} target="_blank" rel="noopener noreferrer">Open live demo ↗</a>
+          </div>
+        )}
+
+        {lab.comingSoon && (
+          <div className="demo-callout">
+            <div>
+              <h2>Coming soon</h2>
+              {lab.comingSoonNote && <p className="muted">{lab.comingSoonNote}</p>}
+            </div>
+            <a className="btn" href={CONTACT} target="_blank" rel="noopener noreferrer">Get in touch ↗</a>
+          </div>
+        )}
+
+        {lab.install && (
+          <div className="demo-callout">
+            <div>
+              <h2>Get started</h2>
+              {lab.installNote && <p className="muted">{lab.installNote}</p>}
+            </div>
+            <CopyCommand command={lab.install} />
           </div>
         )}
 
@@ -67,7 +100,7 @@ export default function LabDetail() {
             {outputs.map((item) => <ResearchItem key={item.id} item={item} />)}
           </div>
         ) : (
-          <p className="muted">Nothing published yet — work in progress is on GitHub.</p>
+          <p className="muted">Nothing published yet{lab.repo ? ' — work in progress is on GitHub' : ''}.</p>
         )}
       </div>
     </section>

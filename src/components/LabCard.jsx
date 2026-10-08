@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Thumb from './Thumb.jsx';
 import RepoStats from './RepoStats.jsx';
 
-// The demo link sits outside the card's <Link>, since links can't be nested.
+// Demo and npm links sit outside the card's <Link>, since links can't be nested.
 export default function LabCard({ lab }) {
   return (
     <div className="tile">
@@ -14,13 +14,18 @@ export default function LabCard({ lab }) {
           <p className="meta">
             {lab.status} · {lab.focus.join(', ')}
           </p>
-          <RepoStats repo={lab.repo} />
+          {lab.repo && <RepoStats repo={lab.repo} />}
         </div>
       </Link>
-      {lab.demo && (
-        <a className="demo-link" href={lab.demo} target="_blank" rel="noopener noreferrer">
-          Live demo ↗
-        </a>
+      {(lab.demo || lab.npm) && (
+        <p className="tile-links">
+          {lab.demo && (
+            <a className="demo-link" href={lab.demo} target="_blank" rel="noopener noreferrer">Live demo ↗</a>
+          )}
+          {lab.npm && (
+            <a className="demo-link" href={lab.npm} target="_blank" rel="noopener noreferrer">npm package ↗</a>
+          )}
+        </p>
       )}
     </div>
   );

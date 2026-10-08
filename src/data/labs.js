@@ -1,6 +1,8 @@
 // Edit this file to add or update labs. `slug` is used in the URL (/labs/:slug).
 // `overview` is optional: a list of highlights shown on the lab's page.
 // `demo` is optional: a live demo URL, opened in a new tab.
+// `repo` is optional (omit it for labs not started yet); `comingSoon` adds a "Coming soon" callout.
+// `npm` and `install` are optional: a package page and the install command shown on the lab page.
 // Keep slugs clear of /labs/browserautomationlab*: CloudFront serves the live demo app there.
 export const labs = [
   {
@@ -41,6 +43,88 @@ export const labs = [
       {
         title: 'Local disk or S3',
         body: 'One switch stores suites, specs, reports, recordings and audits on local disk or Amazon S3, and can move existing data across safely.',
+      },
+    ],
+  },
+  {
+    slug: 'coderelay',
+    name: 'CodeRelay Lab',
+    status: 'Active',
+    tagline: 'Make GitHub Copilot plan first, ask you, then build and test your code.',
+    description:
+      'CodeRelay turns GitHub Copilot into an orchestrator. Every request becomes goal → plan → your approval → specialist agents implement → tests verify, with automatic retries, session memory that survives restarts, and cost and risk reports. No MCP server, no API keys, no config.',
+    focus: ['GitHub Copilot', 'Multi-agent orchestration', 'Guardrails', 'Cost tracking'],
+    repo: 'https://github.com/vamsikrishna787/CodeRelay',
+    npm: 'https://www.npmjs.com/package/@opensuperlab/coderelay',
+    install: 'npm install --save-dev @opensuperlab/coderelay',
+    installNote:
+      'Needs VS Code, the GitHub Copilot extension and Node.js 20.3 or newer. Install it in your project, reload VS Code, and set Copilot Chat to Agent mode — then ask Copilot for anything as usual. If your setup skipped the automatic step (for example with pnpm), run npx coderelay init once.',
+    color: '#7c5cff',
+    gradient: ['#e6defe', '#a993ff', '#4f35c2'],
+    overview: [
+      {
+        title: 'Plan before code',
+        body: 'Copilot writes down the goal and how to check it is done, makes a plan, asks its questions, then asks "Shall I implement this plan?" — nothing gets built until you say yes.',
+      },
+      {
+        title: 'Specialist agents',
+        body: 'An Orchestrator hands the work to an Architect, Researcher, Coder, Tester, Reviewer and Verifier, each defined as a Copilot custom agent you can edit.',
+      },
+      {
+        title: 'Verified, with retries',
+        body: 'Tests check that the goal is really reached. If something is still broken, Copilot fixes it and tries again, up to 5 attempts, then reports the result.',
+      },
+      {
+        title: 'Long-running memory',
+        body: 'Copilot keeps notes in .coderelay/SESSION.md. Close VS Code, come back tomorrow, type "continue" and it picks up where it left off.',
+      },
+      {
+        title: 'Cost and safety reports',
+        body: 'Each request is estimated in premium requests against a budget. Dangerous commands like rm -rf or force-pushes are blocked, and changed files are scanned for leaked secrets.',
+      },
+      {
+        title: 'Shared with your team',
+        body: 'Rules, agents and settings live in your repo (.github/ and .coderelay/), so committing them gives everyone the same behavior. Retries and budget are set in config.json.',
+      },
+    ],
+  },
+  {
+    slug: 'rogue-agent-detection',
+    name: 'Rogue Agent Detection Lab',
+    status: 'Coming soon',
+    comingSoon: true,
+    tagline: 'Predict and stop harmful AI agent actions before they happen.',
+    description:
+      'As AI agents get access to shells, cloud accounts and production data, one bad action can cause damage that cannot be undone. We are building a safety layer that sits between an agent and its tools, predicts whether each action is one the agent should not take, and stops the agent before it acts — not after.',
+    focus: ['AI safety', 'Agent guardrails', 'Risk scoring', 'Human in the loop'],
+    comingSoonNote:
+      'This lab is being set up now. The code, design notes and first experiments will be published here in the open. Want to help build it, test it with your agents or adopt it early? Get in touch.',
+    color: '#e5484d',
+    gradient: ['#ffe0dc', '#ff8f7a', '#b4232f'],
+    overview: [
+      {
+        title: 'Predict before acting',
+        body: 'Every action an agent proposes — a shell command, an API call, a file change, a payment — is checked before it runs, so harmful actions are caught in advance instead of cleaned up afterwards.',
+      },
+      {
+        title: 'A rogue score for every action',
+        body: 'Each action gets a rogue score based on how destructive or irreversible it is, whether it goes beyond the task it was given, and whether it reaches for access or data it should not need.',
+      },
+      {
+        title: 'Hard stop at the threshold',
+        body: 'When an action’s rogue score crosses the threshold, it is blocked immediately and the agent is paused. Nothing runs until a person decides what happens next.',
+      },
+      {
+        title: 'Notify the human',
+        body: 'The user is alerted straight away with the blocked action, its score and the reasons behind it, and can approve it, deny it or shut the agent down.',
+      },
+      {
+        title: 'Built for worst-case damage',
+        body: 'The focus is on catastrophic, hard-to-reverse actions: deleting data or infrastructure, leaking secrets, escalating privileges, or spreading changes far beyond the task.',
+      },
+      {
+        title: 'Open and auditable',
+        body: 'Every score and decision is logged, so you can see why an action was stopped and tune the threshold. The detection rules and models will be fully open source.',
       },
     ],
   },
