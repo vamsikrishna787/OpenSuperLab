@@ -99,9 +99,9 @@ export const labs = [
       'As AI agents get access to shells, cloud accounts and production data, one bad action can cause damage that cannot be undone. We are building a safety layer that sits between an agent and its tools, predicts whether each action is one the agent should not take, and stops the agent before it acts — not after.',
     focus: ['AI safety', 'Agent guardrails', 'Risk scoring', 'Human in the loop'],
     repo: 'https://github.com/vamsikrishna787/AgentGaurd',
-    diagram: '/diagrams/agent-guard-architecture.html',
+    diagram: '/diagrams/agent-guard-architecture-v2.html',
     diagramNote:
-      'Watch tool calls flow through Agent Guard: the denylist, conditional rules and allowlist decide allow, block or ask, and blocked reasons are fed back to the agent.',
+      'Watch tool calls flow through Agent Guard: the denylist, conditional rules and allowlist decide allow, block or ask, and blocked reasons are fed back to the agent. Below it are the results of a reproducible evaluation run with and without the guard: it stopped every anticipated harmful action and 4 of 10 held-out evasions, at about 0.07 ms per decision.',
     color: '#e5484d',
     gradient: ['#ffe0dc', '#ff8f7a', '#b4232f'],
     overview: [
