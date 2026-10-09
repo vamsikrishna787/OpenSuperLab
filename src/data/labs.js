@@ -93,15 +93,12 @@ export const labs = [
   {
     slug: 'rogue-agent-detection',
     name: 'Rogue Agent Detection Lab',
-    status: 'Coming soon',
-    comingSoon: true,
+    status: 'Active',
     tagline: 'Predict and stop harmful AI agent actions before they happen.',
     description:
       'As AI agents get access to shells, cloud accounts and production data, one bad action can cause damage that cannot be undone. We are building a safety layer that sits between an agent and its tools, predicts whether each action is one the agent should not take, and stops the agent before it acts — not after.',
     focus: ['AI safety', 'Agent guardrails', 'Risk scoring', 'Human in the loop'],
     repo: 'https://github.com/vamsikrishna787/AgentGaurd',
-    comingSoonNote:
-      'The first piece is open source: Agent Guard, a Python interceptor that checks every tool call against a YAML or JSON policy and allows it, blocks it or asks a human before it runs. Rogue scoring and the rest of the lab are being built on top of it. Want to help build it, test it with your agents or adopt it early? Get in touch.',
     diagram: '/diagrams/agent-guard-architecture.html',
     diagramNote:
       'Watch tool calls flow through Agent Guard: the denylist, conditional rules and allowlist decide allow, block or ask, and blocked reasons are fed back to the agent.',
