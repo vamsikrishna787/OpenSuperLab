@@ -3,6 +3,8 @@
 // `demo` is optional: a live demo URL, opened in a new tab.
 // `repo` is optional (omit it for labs not started yet); `comingSoon` adds a "Coming soon" callout.
 // `npm` and `install` are optional: a package page and the install command shown on the lab page.
+// `diagram` is optional: a static page under public/ embedded on the lab page (with `diagramNote`).
+// Files in public/ are cached for a year on deploy, so give an updated diagram a new filename.
 // Keep slugs clear of /labs/browserautomationlab*: CloudFront serves the live demo app there.
 export const labs = [
   {
@@ -97,8 +99,12 @@ export const labs = [
     description:
       'As AI agents get access to shells, cloud accounts and production data, one bad action can cause damage that cannot be undone. We are building a safety layer that sits between an agent and its tools, predicts whether each action is one the agent should not take, and stops the agent before it acts — not after.',
     focus: ['AI safety', 'Agent guardrails', 'Risk scoring', 'Human in the loop'],
+    repo: 'https://github.com/vamsikrishna787/AgentGaurd',
     comingSoonNote:
-      'This lab is being set up now. The code, design notes and first experiments will be published here in the open. Want to help build it, test it with your agents or adopt it early? Get in touch.',
+      'The first piece is open source: Agent Guard, a Python interceptor that checks every tool call against a YAML or JSON policy and allows it, blocks it or asks a human before it runs. Rogue scoring and the rest of the lab are being built on top of it. Want to help build it, test it with your agents or adopt it early? Get in touch.',
+    diagram: '/diagrams/agent-guard-architecture.html',
+    diagramNote:
+      'Watch tool calls flow through Agent Guard: the denylist, conditional rules and allowlist decide allow, block or ask, and blocked reasons are fed back to the agent.',
     color: '#e5484d',
     gradient: ['#ffe0dc', '#ff8f7a', '#b4232f'],
     overview: [

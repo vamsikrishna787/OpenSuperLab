@@ -9,6 +9,19 @@ import NotFound from './NotFound.jsx';
 
 const CONTACT = 'https://vamsicloud.com';
 
+// Diagrams are same-origin pages under public/, so the frame can grow to fit them.
+function fitToContent(e) {
+  const frame = e.currentTarget;
+  const doc = frame.contentDocument;
+  if (!doc) return;
+  const fit = () => {
+    const border = frame.offsetHeight - frame.clientHeight;
+    frame.style.height = `${doc.documentElement.scrollHeight + border}px`;
+  };
+  fit();
+  new ResizeObserver(fit).observe(doc.body);
+}
+
 export default function LabDetail() {
   const { slug } = useParams();
   const lab = getLab(slug);
@@ -64,6 +77,23 @@ export default function LabDetail() {
             </div>
             <a className="btn" href={CONTACT} target="_blank" rel="noopener noreferrer">Get in touch ↗</a>
           </div>
+        )}
+
+        {lab.diagram && (
+          <>
+            <div className="section-head">
+              <h2>Architecture</h2>
+              <a className="link-more" href={lab.diagram} target="_blank" rel="noopener noreferrer">Open full screen ↗</a>
+            </div>
+            {lab.diagramNote && <p className="muted">{lab.diagramNote}</p>}
+            <iframe
+              className="diagram-frame"
+              src={`${lab.diagram}?theme=light`}
+              title={`${lab.name} architecture`}
+              loading="lazy"
+              onLoad={fitToContent}
+            />
+          </>
         )}
 
         {lab.install && (
